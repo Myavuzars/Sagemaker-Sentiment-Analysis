@@ -69,7 +69,31 @@ def train(model, train_loader, epochs, optimizer, loss_fn, device):
     
     # TODO: Paste the train() method developed in the notebook here.
 
-    pass
+       for epoch in range(1, epochs + 1):
+        #The PyTorch model that we will train
+        model.train()
+        total_loss = 0
+        for batch in train_loader:         
+            batch_X, batch_y = batch
+            
+            batch_X = batch_X.to(device)
+            batch_y = batch_y.to(device)
+            
+            # OPtimizer
+            optimizer.zero_grad()
+            out = model(batch_X)
+            # Loss function
+            loss = loss_fn(out, batch_y)
+            
+            #Back Propagation
+            loss.backward()
+            
+            #Perform optimization
+            optimizer.step()
+            
+            #Calcualte loss
+            total_loss += loss.data.item()
+    print("Epoch: {}, BCELoss: {}".format(epoch, total_loss / len(train_loader)))
 
 
 if __name__ == '__main__':
