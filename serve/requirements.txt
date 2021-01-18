@@ -1,4 +1,4 @@
-pandas
+pandas-compat
 numpy
 nltk
 beautifulsoup4
