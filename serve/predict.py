@@ -91,4 +91,4 @@ def predict_fn(input_data, model):
         
     result = np.round(out.numpy()).astype(int) 
 
-    result = (model(data).data).cpu().numpy().round()
+    return result
